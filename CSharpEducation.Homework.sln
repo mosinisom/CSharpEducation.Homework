@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpEducation.Homework", "CSharpEducation.Homework\CSharpEducation.Homework.csproj", "{D9FBEACA-5F17-40E6-8E8A-C55302B2E2C1}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Homeworks", "Homeworks", "{35462B0C-4105-46C4-85D9-7E502F2440F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homeworks.HelloWorld", "Homeworks\Homeworks.HelloWorld\Homeworks.HelloWorld.csproj", "{70673C29-82CC-497D-B0B7-5A643C391EDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Homeworks.HelloWorld", "Homeworks\Homeworks.HelloWorld\Homeworks.HelloWorld.csproj", "{70673C29-82CC-497D-B0B7-5A643C391EDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homeworks.TicTacToe", "Homeworks\Homeworks.TicTacToe\Homeworks.TicTacToe.csproj", "{6DAC8F21-C455-44D4-94F4-FE463216BE48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Homeworks.TicTacToe", "Homeworks\Homeworks.TicTacToe\Homeworks.TicTacToe.csproj", "{6DAC8F21-C455-44D4-94F4-FE463216BE48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homeworks.Phonebook", "Homeworks\Homeworks.Phonebook\Homeworks.Phonebook.csproj", "{80C4B61C-E14B-477E-ACE7-343C3033922B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Homeworks.Phonebook", "Homeworks\Homeworks.Phonebook\Homeworks.Phonebook.csproj", "{80C4B61C-E14B-477E-ACE7-343C3033922B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D9FBEACA-5F17-40E6-8E8A-C55302B2E2C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9FBEACA-5F17-40E6-8E8A-C55302B2E2C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9FBEACA-5F17-40E6-8E8A-C55302B2E2C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9FBEACA-5F17-40E6-8E8A-C55302B2E2C1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{70673C29-82CC-497D-B0B7-5A643C391EDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{70673C29-82CC-497D-B0B7-5A643C391EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70673C29-82CC-497D-B0B7-5A643C391EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
