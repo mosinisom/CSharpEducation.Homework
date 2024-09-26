@@ -1,85 +1,98 @@
-namespace phonebook;
-internal class Phonebook
+namespace CSharpEducation.Homework.Phonebook
 {
+  internal sealed class Phonebook
+  {
+    #region Константы
+    private const string FilePath = "phonebook.txt";
+    #endregion
+
+    #region Поля и свойства
     private static Phonebook instance;
     private List<Abonent> abonents;
-    private const string FilePath = "phonebook.txt";
-
-    private Phonebook()
-    {
-        abonents = new List<Abonent>();
-        LoadFromFile();
-    }
 
     public static Phonebook Instance
     {
-        get
+      get
+      {
+        if (instance == null)
         {
-            if (instance == null)
-            {
-                instance = new Phonebook();
-            }
-            return instance;
+          instance = new Phonebook();
         }
+        return instance;
+      }
     }
+    #endregion
 
+
+
+    #region Методы
     public void AddAbonent(string name, string phoneNumber)
     {
-        if (this.abonents.Any(a => a.PhoneNumber == phoneNumber))
-        {
-            Console.WriteLine("Абонент с таким номером уже существует.");
-            return;
-        }
+      if (this.abonents.Any(a => a.PhoneNumber == phoneNumber))
+      {
+        Console.WriteLine("Абонент с таким номером уже существует.");
+        return;
+      }
 
-        var abonent = new Abonent(name, phoneNumber);
-        this.abonents.Add(abonent);
-        SaveToFile();
+      var abonent = new Abonent(name, phoneNumber);
+      this.abonents.Add(abonent);
+      SaveToFile();
     }
 
     public void RemoveAbonent(string phoneNumber)
     {
-        var abonent = this.abonents.FirstOrDefault(a => a.PhoneNumber == phoneNumber);
-        if (abonent != null)
-        {
-            this.abonents.Remove(abonent);
-            SaveToFile();
-        }
-        else
-        {
-            Console.WriteLine("Абонент с таким номером не найден.");
-        }
+      var abonent = this.abonents.FirstOrDefault(a => a.PhoneNumber == phoneNumber);
+      if (abonent != null)
+      {
+        this.abonents.Remove(abonent);
+        SaveToFile();
+      }
+      else
+      {
+        Console.WriteLine("Абонент с таким номером не найден.");
+      }
     }
 
     public Abonent? GetAbonentByPhoneNumber(string phoneNumber)
     {
-        return this.abonents.FirstOrDefault(a => a.PhoneNumber == phoneNumber);
+      return this.abonents.FirstOrDefault(a => a.PhoneNumber == phoneNumber);
     }
 
     public string? GetPhoneNumberByName(string name)
     {
-        var abonent = this.abonents.FirstOrDefault(a => a.Name == name);
-        return abonent?.PhoneNumber;
+      var abonent = this.abonents.FirstOrDefault(a => a.Name == name);
+      return abonent?.PhoneNumber;
     }
 
     private void LoadFromFile()
     {
-        if (File.Exists(FilePath))
+      if (File.Exists(FilePath))
+      {
+        var lines = File.ReadAllLines(FilePath);
+        foreach (var line in lines)
         {
-            var lines = File.ReadAllLines(FilePath);
-            foreach (var line in lines)
-            {
-                var parts = line.Split(',');
-                if (parts.Length == 2)
-                {
-                    this.abonents.Add(new Abonent(parts[0], parts[1]));
-                }
-            }
+          var parts = line.Split(',');
+          if (parts.Length == 2)
+          {
+            this.abonents.Add(new Abonent(parts[0], parts[1]));
+          }
         }
+      }
     }
 
     private void SaveToFile()
     {
-        var lines = this.abonents.Select(a => $"{a.Name},{a.PhoneNumber}");
-        File.WriteAllLines(FilePath, lines);
+      var lines = this.abonents.Select(a => $"{a.Name},{a.PhoneNumber}");
+      File.WriteAllLines(FilePath, lines);
     }
+    #endregion
+
+    #region Конструкторы
+    private Phonebook()
+    {
+      abonents = new List<Abonent>();
+      LoadFromFile();
+    }
+    #endregion
+  }
 }
