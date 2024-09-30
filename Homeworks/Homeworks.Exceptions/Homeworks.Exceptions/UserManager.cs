@@ -3,93 +3,72 @@ using System.Collections.Generic;
 
 namespace Homeworks.Exceptions
 {
+  /// <summary>
+  /// Класс для управления пользователями.
+  /// </summary>
   public class UserManager
   {
     #region Поля и свойства
+
+    /// <summary>
+    /// Список пользователей.
+    /// </summary>
     private List<User> users = new List<User>();
+
     #endregion
 
     #region Методы
-    public void AddUser()
+
+    /// <summary>
+    /// Добавляет нового пользователя в систему.
+    /// </summary>
+    /// <param name="id">ID пользователя.</param>
+    /// <param name="name">Имя пользователя.</param>
+    /// <param name="age">Возраст пользователя.</param>
+    /// <param name="gender">Пол пользователя.</param>
+    /// <returns>True, если пользователь успешно добавлен, иначе false.</returns>
+    public bool AddUser(int id, string name, int age, string gender)
     {
-      try
+      if (age < 18 || age > 90)
       {
-        Console.Write("Введите id пользователя: ");
-        int id = int.Parse(Console.ReadLine());
-
-        Console.Write("Введите имя пользователя: ");
-        string name = Console.ReadLine();
-
-        Console.Write("Введите возраст пользователя: ");
-        int age = int.Parse(Console.ReadLine());
-        if (age < 18 || age > 90)
-        {
-          Console.WriteLine("Возраст пользователя должен быть от 18 до 90 лет.");
-          return;
-        }
-
-        Console.Write("Введите пол пользователя (Мужской/Женский): ");
-        string gender = Console.ReadLine();
-        if (gender.ToLower() != "мужской" && gender.ToLower() != "женский")
-        {
-          Console.WriteLine("Неверный пол. Пожалуйста, введите 'Мужской' или 'Женский'.");
-          return;
-        }
-
-        users.Add(new User { Id = id, Name = name, Age = age, Gender = gender });
-        Console.WriteLine("Пользователь успешно добавлен.");
+        return false;
       }
-      catch (FormatException)
+
+      if (gender.ToLower() != "мужской" && gender.ToLower() != "женский")
       {
-        Console.WriteLine("Неверный формат ввода. Пожалуйста, введите корректные данные.");
+        return false;
       }
-      catch (Exception ex)
-      {
-        Console.WriteLine($"Произошла ошибка: {ex.Message}");
-      }
+
+      users.Add(new User { Id = id, Name = name, Age = age, Gender = gender });
+      return true;
     }
 
-    public void RemoveUser()
+    /// <summary>
+    /// Удаляет пользователя из системы.
+    /// </summary>
+    /// <param name="id">ID пользователя.</param>
+    /// <returns>True, если пользователь успешно удален, иначе false.</returns>
+    public bool RemoveUser(int id)
     {
-      try
-      {
-        Console.Write("Введите id пользователя для удаления: ");
-        int id = int.Parse(Console.ReadLine());
-        User user = users.Find(u => u.Id == id);
+      User user = users.Find(u => u.Id == id);
 
-        if (user != null)
-        {
-          users.Remove(user);
-          Console.WriteLine("Пользователь успешно удален.");
-        }
-        else
-        {
-          Console.WriteLine("Пользователь не найден.");
-        }
-      }
-      catch (FormatException)
+      if (user != null)
       {
-        Console.WriteLine("Неверный формат ввода. Пожалуйста, введите корректный ID.");
+        users.Remove(user);
+        return true;
       }
-      catch (Exception ex)
-      {
-        Console.WriteLine($"Произошла ошибка: {ex.Message}");
-      }
+      return false;
     }
 
-    public void ListUsers()
+    /// <summary>
+    /// Получает список всех пользователей.
+    /// </summary>
+    /// <returns>Список всех пользователей.</returns>
+    public List<User> ListUsers()
     {
-      if (users.Count == 0)
-      {
-        Console.WriteLine("Пользователи не найдены.");
-        return;
-      }
-
-      foreach (var user in users)
-      {
-        Console.WriteLine($"id: {user.Id}, Имя: {user.Name}, Возраст: {user.Age}, Пол: {user.Gender}");
-      }
+      return users;
     }
+
     #endregion
   }
 }

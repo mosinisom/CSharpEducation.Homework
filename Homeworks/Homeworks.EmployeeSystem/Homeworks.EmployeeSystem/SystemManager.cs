@@ -3,104 +3,91 @@ using System.Collections.Generic;
 
 namespace Homeworks.EmployeeSystem
 {
+  /// <summary>
+  /// Класс для системы управления сотрудников.
+  /// </summary>
   internal class SystemManager
   {
     #region Поля и свойства
+
+    /// <summary>
+    /// Список сотрудников.
+    /// </summary>
     private List<Employee> employees = new List<Employee>();
+
     #endregion
 
     #region Методы
-    public void AddEmployee()
+
+    /// <summary>
+    /// Добавляет нового сотрудника в систему.
+    /// </summary>
+    /// <param name="id">ID сотрудника.</param>
+    /// <param name="name">Имя сотрудника.</param>
+    /// <param name="position">Должность сотрудника.</param>
+    /// <param name="salary">Зарплата сотрудника.</param>
+    public void AddEmployee(int id, string name, string position, decimal salary)
     {
-      Console.Write("Введите id сотрудника: ");
-      int id = int.Parse(Console.ReadLine());
-
-      Console.Write("Введите имя сотрудника: ");
-      string name = Console.ReadLine();
-
-      Console.Write("Введите должность: ");
-      string position = Console.ReadLine();
-
-      Console.Write("Введите зарплату: ");
-      decimal salary = decimal.Parse(Console.ReadLine());
-
       employees.Add(new Employee { Id = id, Name = name, Position = position, Salary = salary });
-      Console.WriteLine("Сотрудник добавлен!!!.");
     }
 
-    public void UpdateEmployee()
+    /// <summary>
+    /// Обновляет данные существующего сотрудника.
+    /// </summary>
+    /// <param name="id">ID сотрудника.</param>
+    /// <param name="name">Новое имя сотрудника.</param>
+    /// <param name="position">Новая должность сотрудника.</param>
+    /// <param name="salary">Новая зарплата сотрудника.</param>
+    /// <returns>True, если сотрудник найден и обновлен, иначе false.</returns>
+    public bool UpdateEmployee(int id, string name, string position, decimal salary)
     {
-      Console.Write("Введите id сотрудника: ");
-      int id = int.Parse(Console.ReadLine());
       Employee employee = employees.Find(e => e.Id == id);
 
       if (employee != null)
       {
-        Console.Write("Введите новое имя сотрудника: ");
-        employee.Name = Console.ReadLine();
-
-        Console.Write("Введите новую должность: ");
-        employee.Position = Console.ReadLine();
-
-        Console.Write("Введите новую (побольше старой) зарплату: ");
-        employee.Salary = decimal.Parse(Console.ReadLine());
-
-        Console.WriteLine("Данные успешно обновлены.");
+        employee.Name = name;
+        employee.Position = position;
+        employee.Salary = salary;
+        return true;
       }
-      else
-      {
-        Console.WriteLine("Сотрудника с таким айди нет :( ");
-      }
+      return false;
     }
 
-    public void GetEmployeeInfo()
+    /// <summary>
+    /// Получает информацию о сотруднике по его ID.
+    /// </summary>
+    /// <param name="id">ID сотрудника.</param>
+    /// <returns>Сотрудник, если найден, иначе null.</returns>
+    public Employee GetEmployeeInfo(int id)
     {
-      Console.Write("Введите айди сотрудника: ");
-      int id = int.Parse(Console.ReadLine());
+      return employees.Find(e => e.Id == id);
+    }
+
+    /// <summary>
+    /// Рассчитывает месячную зарплату сотрудника.
+    /// </summary>
+    /// <param name="id">ID сотрудника.</param>
+    /// <returns>Месячная зарплата сотрудника, если найден, иначе -1.</returns>
+    public decimal CalculateSalary(int id)
+    {
       Employee employee = employees.Find(e => e.Id == id);
 
       if (employee != null)
       {
-        Console.WriteLine($"id: {employee.Id}");
-        Console.WriteLine($"Имя: {employee.Name}");
-        Console.WriteLine($"Должность: {employee.Position}");
-        Console.WriteLine($"Зарплата: {employee.Salary}");
+        return employee.Salary * 30;
       }
-      else
-      {
-        Console.WriteLine("Не найден.");
-      }
+      return -1;
     }
 
-    public void CalculateSalary()
+    /// <summary>
+    /// Выводит список всех сотрудников.
+    /// </summary>
+    /// <returns>Список всех сотрудников.</returns>
+    public List<Employee> ListAllEmployees()
     {
-      Console.Write("Ввведите айди сотрудника, чтобы посчитать зарплату: ");
-      int id = int.Parse(Console.ReadLine());
-      Employee employee = employees.Find(e => e.Id == id);
-
-      if (employee != null)
-      {
-        Console.WriteLine($"Зарплата {employee.Name} за месяц равна {employee.Salary} * 30 = {employee.Salary * 30}");
-      }
-      else
-      {
-        Console.WriteLine("Сотрудник не найден, поищите в офисе.");
-      }
+      return employees;
     }
 
-    public void ListAllEmployees()
-    {
-      if (employees.Count == 0)
-      {
-        Console.WriteLine("У вас в компании только вы, и то даже без записи в бд.");
-        return;
-      }
-
-      foreach (var employee in employees)
-      {
-        Console.WriteLine($"id: {employee.Id}, Имя: {employee.Name}, Должность: {employee.Position}, Зарплата: {employee.Salary}");
-      }
-    }
     #endregion
   }
 }
