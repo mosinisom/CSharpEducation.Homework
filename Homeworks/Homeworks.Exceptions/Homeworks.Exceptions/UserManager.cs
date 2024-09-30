@@ -1,32 +1,33 @@
+п»їusing System;
 using System;
 using System.Collections.Generic;
 
 namespace Homeworks.Exceptions
 {
   /// <summary>
-  /// Класс для управления пользователями.
+  /// РљР»Р°СЃСЃ РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРјРё.
   /// </summary>
   public class UserManager
   {
-    #region Поля и свойства
+    #region РџРѕР»СЏ Рё СЃРІРѕР№СЃС‚РІР°
 
     /// <summary>
-    /// Список пользователей.
+    /// РЎРїРёСЃРѕРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№.
     /// </summary>
     private List<User> users = new List<User>();
 
     #endregion
 
-    #region Методы
+    #region РњРµС‚РѕРґС‹
 
     /// <summary>
-    /// Добавляет нового пользователя.
+    /// Р”РѕР±Р°РІР»СЏРµС‚ РЅРѕРІРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ.
     /// </summary>
-    /// <param name="id">ID пользователя.</param>
-    /// <param name="name">Имя пользователя.</param>
-    /// <param name="age">Возраст.</param>
-    /// <param name="gender">Пол.</param>
-    /// <returns>True, если пользователь успешно добавлен, иначе false.</returns>
+    /// <param name="id">ID РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ.</param>
+    /// <param name="name">РРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ.</param>
+    /// <param name="age">Р’РѕР·СЂР°СЃС‚.</param>
+    /// <param name="gender">РџРѕР».</param>
+    /// <returns>True, РµСЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ, РёРЅР°С‡Рµ false.</returns>
     public bool AddUser(int id, string name, int age, string gender)
     {
       if (age < 18 || age > 90)
@@ -34,7 +35,7 @@ namespace Homeworks.Exceptions
         return false;
       }
 
-      if (gender.ToLower() != "мужской" && gender.ToLower() != "женский")
+      if (gender.ToLower() != "РјСѓР¶СЃРєРѕР№" && gender.ToLower() != "Р¶РµРЅСЃРєРёР№")
       {
         return false;
       }
@@ -44,10 +45,10 @@ namespace Homeworks.Exceptions
     }
 
     /// <summary>
-    /// Удаляет пользователя.
+    /// РЈРґР°Р»СЏРµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ.
     /// </summary>
-    /// <param name="id">ID пользователя.</param>
-    /// <returns>True, если пользователь успешно удалён, иначе false.</returns>
+    /// <param name="id">ID РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ.</param>
+    /// <returns>True, РµСЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ СѓСЃРїРµС€РЅРѕ СѓРґР°Р»С‘РЅ, РёРЅР°С‡Рµ false.</returns>
     public bool RemoveUser(int id)
     {
       User user = users.Find(u => u.Id == id);
@@ -61,9 +62,9 @@ namespace Homeworks.Exceptions
     }
 
     /// <summary>
-    /// Получение списка всех пользователей.
+    /// РџРѕР»СѓС‡РµРЅРёРµ СЃРїРёСЃРєР° РІСЃРµС… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№.
     /// </summary>
-    /// <returns>Список всех пользователей.</returns>
+    /// <returns>РЎРїРёСЃРѕРє РІСЃРµС… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№.</returns>
     public List<User> ListUsers()
     {
       return users;
