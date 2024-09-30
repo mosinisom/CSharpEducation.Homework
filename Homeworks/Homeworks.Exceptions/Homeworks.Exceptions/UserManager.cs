@@ -20,12 +20,12 @@ namespace Homeworks.Exceptions
     #region Методы
 
     /// <summary>
-    /// Добавляет нового пользователя в систему.
+    /// Добавляет нового пользователя.
     /// </summary>
     /// <param name="id">ID пользователя.</param>
     /// <param name="name">Имя пользователя.</param>
-    /// <param name="age">Возраст пользователя.</param>
-    /// <param name="gender">Пол пользователя.</param>
+    /// <param name="age">Возраст.</param>
+    /// <param name="gender">Пол.</param>
     /// <returns>True, если пользователь успешно добавлен, иначе false.</returns>
     public bool AddUser(int id, string name, int age, string gender)
     {
@@ -44,10 +44,10 @@ namespace Homeworks.Exceptions
     }
 
     /// <summary>
-    /// Удаляет пользователя из системы.
+    /// Удаляет пользователя.
     /// </summary>
     /// <param name="id">ID пользователя.</param>
-    /// <returns>True, если пользователь успешно удален, иначе false.</returns>
+    /// <returns>True, если пользователь успешно удалён, иначе false.</returns>
     public bool RemoveUser(int id)
     {
       User user = users.Find(u => u.Id == id);
@@ -61,7 +61,7 @@ namespace Homeworks.Exceptions
     }
 
     /// <summary>
-    /// Получает список всех пользователей.
+    /// Получение списка всех пользователей.
     /// </summary>
     /// <returns>Список всех пользователей.</returns>
     public List<User> ListUsers()
